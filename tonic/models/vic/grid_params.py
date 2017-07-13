@@ -436,12 +436,18 @@ class Desc(object):
                                         'temperatures fall below 0C.'}
         if organic_fract:
             self.soil_param['organic'] = 'Organic content of soil'
-            self.soil_param['bulk_dens_org'] = 'Bulk density of organic portion of soil'
-            self.soil_param['soil_dens_org'] = 'Soil density of organic portion of soil'
+            self.soil_param['bulk_dens_org'] = 'Bulk density of organic ' \
+                                               + 'portion of soil'
+            self.soil_param['soil_dens_org'] = 'Soil density of organic ' \
+                                               + 'portion of soil'
         if spatial_frost:
-            self.soil_param['frost_slope'] = 'Slope of uniform distribution of soil temperature'
+            self.soil_param['frost_slope'] = 'Slope of uniform ' \
+                                             + 'distribution of soil ' \
+                                             + 'temperature'
         if spatial_snow:
-            self.soil_param['max_snow_distrib_slope'] = 'Maximum slope of the snow depth distribution'
+            self.soil_param['max_snow_distrib_slope'] = 'Maximum slope of ' \
+                                                        + 'the snow depth ' \
+                                                        + 'distribution'
         if july_tavg_supplied:
             self.soil_param['July_Tavg'] = 'Average July air temperature'
 
@@ -500,13 +506,28 @@ class Desc(object):
         if veglib_fcan:
             self.veglib['lib_fcanopy'] = 'Canopy cover fraction, one per month'
         if veglib_photo:
-            self.veglib['lib_Ctype'] = 'Photosynthetic pathway (0 = C3; 1 = C4)'
-            self.veglib['lib_MaxCarboxRate'] = 'Maximum carboxylation rate at 25 C'
-            self.veglib['lib_MaxE_or_CO2Spec'] = 'Maximum electron transport rate at 25 C (C3) or CO2 specificity (C4)'
+            self.veglib['lib_Ctype'] = 'Photosynthetic pathway (0 = C3; ' \
+                                       + '1 = C4)'
+            self.veglib['lib_MaxCarboxRate'] = 'Maximum carboxylation rate ' \
+                                               + 'at 25 C'
+            self.veglib['lib_MaxE_or_CO2Spec'] = 'Maximum electron ' \
+                                                 + 'transport rate at ' \
+                                                 + '25 C (C3) or CO2 ' \
+                                                 + 'specificity (C4)'
             self.veglib['lib_LUE'] = 'Light use efficiency'
-            self.veglib['lib_Nscale'] = '1 = this class employs nitrogen scaling factors; 0 = no nitrogen scaling factors'
-            self.veglib['lib_Wnpp_inhib'] = 'Fraction of maximum moisture storage in top soil layer above which photosynthesis begins to be inhibited by wet conditions'
-            self.veglib['lib_NPPfactor_sat'] = 'NPP inhibition factor under saturated conditions (when moisture = 100% of maximum)'
+            self.veglib['lib_Nscale'] = '1 = this class employs nitrogen ' \
+                                        + 'scaling factors; 0 = no ' \
+                                        + 'nitrogen scaling factors'
+            self.veglib['lib_Wnpp_inhib'] = 'Fraction of maximum moisture ' \
+                                            + 'storage in top soil layer ' \
+                                            + 'above which photosynthesis ' \
+                                            + 'begins to be inhibited by ' \
+                                            + 'wet conditions'
+            self.veglib['lib_NPPfactor_sat'] = 'NPP inhibition factor ' \
+                                               + 'under saturated ' \
+                                               + 'conditions (when ' \
+                                               + 'moisture = 100% of ' \
+                                               + 'maximum)'
 
         # Veg Params
         self.veg_param = {'gridcell': 'Grid cell number',
@@ -522,8 +543,10 @@ class Desc(object):
                           'root_fract': 'Fraction of root in the current root '
                                         'zone'}
         if blowing_snow:
-            self.veg_param['sigma_slope'] = 'Std. deviation of terrain slope within veg tile'
-            self.veg_param['lag_one'] = 'Lag one gradient autocorrelation of terrain slope'
+            self.veg_param['sigma_slope'] = 'Std. deviation of terrain ' \
+                                            + 'slope within veg tile'
+            self.veg_param['lag_one'] = 'Lag one gradient autocorrelation ' \
+                                        + 'of terrain slope'
             self.veg_param['fetch'] = 'Average fetch length within veg tile'
         if vegparam_lai:
             self.veg_param['LAI'] = 'Leaf Area Index, one per month'
@@ -560,62 +583,98 @@ class Desc(object):
                       'Soil_ice': 'soil layer ice content',
                       'Canopy_water': 'canopy liquid moisture content',
                       'Snow_age': 'number of time steps since last snowfall',
-                      'Snow_melt_state': 'snow melting flag (1=melting; 0=not)',
+                      'Snow_melt_state': 'snow melting flag (1=melting; '
+                                         '0=not)',
                       'Snow_coverage': 'snow area coverage fraction',
                       'Snow_water_equivalent': 'snow water equivalent',
-                      'Snow_surf_temp': 'temperature of snowpack surface layer',
-                      'Snow_surf_water': 'liquid water content of snowpack surface layer',
+                      'Snow_surf_temp': 'temperature of snowpack surface '
+                                        'layer',
+                      'Snow_surf_water': 'liquid water content of '
+                                         'snowpack surface layer',
                       'Snow_pack_temp': 'temperature of snowpack pack layer',
-                      'Snow_pack_water': 'liquid water content of snowpack pack layer',
+                      'Snow_pack_water': 'liquid water content of snowpack '
+                                         'pack layer',
                       'Snow_density': 'snow density',
                       'Snow_cold_content': 'snow cold content',
-                      'Snow_canopy': 'snow water equivalent of canopy-intercepted snow',
-                      'Soil_node_temp': 'temperatures of the nodes in the soil temperature profile'}
+                      'Snow_canopy': 'snow water equivalent of canopy-'
+                                     'intercepted snow',
+                      'Soil_node_temp': 'temperatures of the nodes in the '
+                                        'soil temperature profile'}
         if carbon:
-            self.state['AnnualNPP'] = 'Year-to-date total net primary productivity'
-            self.state['AnnualNPPPrev'] = 'Previous annual total net primary prouctivity'
+            self.state['AnnualNPP'] = 'Year-to-date total net primary ' \
+                                      + 'productivity'
+            self.state['AnnualNPPPrev'] = 'Previous annual total net ' \
+                                          + 'primary prouctivity'
             self.state['CLitter'] = 'Carbon storage in litter pool'
             self.state['CInter'] = 'Carbon storage in intermediate soil pool'
             self.state['CSlow'] = 'Carbon storage in slow soil pool'
         if lakes:
-            self.state['Lake_soil_moisture'] = 'lake soil layer moisture content'
+            self.state['Lake_soil_moisture'] = 'lake soil layer moisture ' \
+                                               + 'content'
             self.state['Lake_soil_ice'] = 'lake soil layer ice content'
             if carbon:
-                self.state['Lake_CLitter'] = 'Carbon storage in lake litter pool'
-                self.state['Lake_CInter'] = 'Carbon storage in lake intermediate soil pool'
-                self.state['Lake_CSlow'] = 'Carbon storage in lake slow soil pool'
-            self.state['Lake_snow_age'] = 'Number of time steps since last snowfall on lake snowpack'
-            self.state['Lake_snow_melt_state'] = 'lake snow melting flag (1=melting; 0=not)'
-            self.state['Lake_snow_coverage'] = 'lake snow area coverage fraction'
-            self.state['Lake_snow_water_equivalent'] = 'lake snow water equivalent'
-            self.state['Lake_snow_surf_temp'] = 'temperature of lake snowpack surface layer'
-            self.state['Lake_snow_surf_water'] = 'liquid water content of lake snowpack surface layer'
-            self.state['Lake_snow_pack_temp'] = 'temperature of lake snowpack pack layer'
-            self.state['Lake_snow_pack_water'] = 'liquid water content of lake snowpack pack layer'
+                self.state['Lake_CLitter'] = 'Carbon storage in lake ' \
+                                             + 'litter pool'
+                self.state['Lake_CInter'] = 'Carbon storage in lake ' \
+                                            + 'intermediate soil pool'
+                self.state['Lake_CSlow'] = 'Carbon storage in lake slow ' \
+                                           + 'soil pool'
+            self.state['Lake_snow_age'] = 'Number of time steps since ' \
+                                          + 'last snowfall on lake snowpack'
+            self.state['Lake_snow_melt_state'] = 'lake snow melting flag ' \
+                                                 + '(1=melting; 0=not)'
+            self.state['Lake_snow_coverage'] = 'lake snow area coverage ' \
+                                               + 'fraction'
+            self.state['Lake_snow_water_equivalent'] = 'lake snow water ' \
+                                                       + 'equivalent'
+            self.state['Lake_snow_surf_temp'] = 'temperature of lake ' \
+                                                + 'snowpack surface layer'
+            self.state['Lake_snow_surf_water'] = 'liquid water content of ' \
+                                                 + 'lake snowpack surface ' \
+                                                 + 'layer'
+            self.state['Lake_snow_pack_temp'] = 'temperature of lake ' \
+                                                + 'snowpack pack layer'
+            self.state['Lake_snow_pack_water'] = 'liquid water content of ' \
+                                                 + 'lake snowpack pack layer'
             self.state['Lake_snow_density'] = 'lake snow density'
             self.state['Lake_snow_cold_content'] = 'lake snow cold content'
-            self.state['Lake_snow_canopy'] = 'snow water equivalent of canopy-intercepted lake snow'
-            self.state['Lake_soil_node_temp'] = 'temperatures of the nodes in the lake soil temperature profile'
+            self.state['Lake_snow_canopy'] = 'snow water equivalent of ' \
+                                             + 'canopy-intercepted lake snow'
+            self.state['Lake_soil_node_temp'] = 'temperatures of the ' \
+                                                + 'nodes in the lake soil ' \
+                                                + 'temperature profile'
             self.state['Lake_active_layers'] = 'number of active lake nodes'
             self.state['Lake_layer_dz'] = 'lake water layer thickness'
-            self.state['Lake_surf_layer_dz'] = 'lake water surface layer thickness'
+            self.state['Lake_surf_layer_dz'] = 'lake water surface layer ' \
+                                               + 'thickness'
             self.state['Lake_depth'] = 'lake depth (at deepest point)'
             self.state['Lake_layer_surf_area'] = 'surface areas of lake layers'
-            self.state['Lake_surf_area'] = 'lake surface area as fraction of grid cell area'
+            self.state['Lake_surf_area'] = 'lake surface area as fraction ' \
+                                           + 'of grid cell area'
             self.state['Lake_volume'] = 'lake volume'
             self.state['Lake_layer_temp'] = 'temperatures of lake water layers'
             self.state['Lake_average_temp'] = 'average lake water temperature'
-            self.state['Lake_ice_area_frac'] = 'lake ice area (beginning of time step'
-            self.state['Lake_ice_area_frac_new'] = 'lake ice area (end of time step)'
-            self.state['Lake_ice_water_equivalent'] = 'lake ice water equivalent'
+            self.state['Lake_ice_area_frac'] = 'lake ice area (beginning ' \
+                                               + 'of time step'
+            self.state['Lake_ice_area_frac_new'] = 'lake ice area (end of ' \
+                                                   + 'time step)'
+            self.state['Lake_ice_water_equivalent'] = 'lake ice water ' \
+                                                      + 'equivalent'
             self.state['Lake_ice_height'] = 'lake ice thickness'
             self.state['Lake_ice_temp'] = 'lake ice temperature'
-            self.state['Lake_ice_snow_water_equivalent'] = 'snow water equivalent of lake snowpack per unit lake ice area'
-            self.state['Lake_ice_snow_surf_temp'] = 'temperature of lake snowpack surface layer'
-            self.state['Lake_ice_snow_pack_temp'] = 'temperature of lake snowpack pack layer'
+            self.state['Lake_ice_snow_water_equivalent'] = 'snow water ' \
+                + 'equivalent of lake snowpack per unit lake ice area'
+            self.state['Lake_ice_snow_surf_temp'] = 'temperature of lake ' \
+                                                    + 'snowpack surface layer'
+            self.state['Lake_ice_snow_pack_temp'] = 'temperature of lake ' \
+                                                    + 'snowpack pack layer'
             self.state['Lake_ice_snow_cold_content'] = 'lake snow coldcontent'
-            self.state['Lake_ice_snow_surf_water'] = 'liquid water content of lake snowpack surface layer'
-            self.state['Lake_ice_snow_pack_water'] = 'liquid water content of lake snowpack pack layer'
+            self.state['Lake_ice_snow_surf_water'] = 'liquid water content ' \
+                                                     + 'of lake snowpack ' \
+                                                     + 'surface layer'
+            self.state['Lake_ice_snow_pack_water'] = 'liquid water content ' \
+                                                     + 'of lake snowpack ' \
+                                                     + 'pack layer'
             self.state['Lake_ice_snow_albedo'] = 'albedo of lake snowpack'
             self.state['Lake_ice_snow_depth'] = 'depth of lake snowpack'
 
@@ -870,10 +929,12 @@ def make_grid(grid_file, soil_file, snow_file, vegl_file, veg_file,
     print('making gridded parameters (and states) now...')
 
     if state_file and (not soil_file or not veg_file):
-        raise ValueError('Cannot read/write state file without soil and veg information')
+        raise ValueError('Cannot read/write state file without soil and '
+                         'veg information')
 
     if nc_state_file and not state_file:
-        raise ValueError('Cannot write netcdf state file without an input ascii state file')
+        raise ValueError('Cannot write netcdf state file without an input '
+                         'ascii state file')
 
     soil_dict = soil(soil_file, c=Cols(nlayers=nlayers,
                      organic_fract=organic_fract,
@@ -893,7 +954,8 @@ def make_grid(grid_file, soil_file, snow_file, vegl_file, veg_file,
         veglib_dict, lib_bare_idx = veg_class(vegl_file,
                                               veglib_photo=veglib_photo,
                                               c=Cols(veglib_fcan=veglib_fcan,
-                                                     veglib_photo=veglib_photo))
+                                                     veglib_photo=veglib_photo)
+                                              )
         veg_classes = len(veglib_dict['Veg_class'])
     else:
         veglib_dict = False
@@ -915,9 +977,10 @@ def make_grid(grid_file, soil_file, snow_file, vegl_file, veg_file,
         lake_dict = False
 
     if state_file:
-        state_dict = state(state_file, soil_dict, veg_dict, lake_dict,
-                           version_in, nlayers, snow_bands, veg_classes,
-                           soil_nodes, nfrost, max_numnod, cells, carbon)
+        state_dict = state(state_file, soil_dict, veg_dict, snow_dict,
+                           lake_dict, version_in, nlayers, snow_bands,
+                           veg_classes, soil_nodes, nfrost, max_numnod,
+                           cells, carbon)
     else:
         state_dict = False
 
@@ -1067,9 +1130,9 @@ def latlon2yx(plats, plons, glats, glons):
 
 # -------------------------------------------------------------------- #
 def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
-                lake_dict=None, state_dict=None, version_in='4.2', veglib_fcan=False,
-                veglib_photo=False, lib_bare_idx=None, blowing_snow=False,
-                vegparam_lai=False, vegparam_fcan=False,
+                lake_dict=None, state_dict=None, version_in='4.2',
+                veglib_fcan=False, veglib_photo=False, lib_bare_idx=None,
+                blowing_snow=False, vegparam_lai=False, vegparam_fcan=False,
                 vegparam_albedo=False, lai_src='FROM_VEGLIB',
                 fcan_src='FROM_DEFAULT', alb_src='FROM_VEGLIB'):
     """
@@ -1164,7 +1227,8 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
                 for jj in pyrange(j):
                     for kk in pyrange(k):
                         for ll in pyrange(l):
-                            out_dict[var][jj, kk, ll, yi, xi] = mydict[var][:, jj, kk, ll]
+                            out_dict[var][jj, kk, ll, yi, xi] \
+                                = mydict[var][:, jj, kk, ll]
                 for y, x in pyzip(ymask, xmask):
                     out_dict[var][:, :, :, y, x] = fill_val
 
@@ -1179,7 +1243,8 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
                     for kk in pyrange(k):
                         for ll in pyrange(l):
                             for mm in pyrange(m):
-                                out_dict[var][jj, kk, ll, mm, yi, xi] = mydict[var][:, jj, kk, ll, mm]
+                                out_dict[var][jj, kk, ll, mm, yi, xi] \
+                                    = mydict[var][:, jj, kk, ll, mm]
                 for y, x in pyzip(ymask, xmask):
                     out_dict[var][:, :, :, :, y, x] = fill_val
 
@@ -1253,7 +1318,8 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
                     new[-1, :, :] = bare_vegparam[var]
                 else:
                     new[:, :, :] = out_dicts['veg_dict'][var]
-                out_dicts['veg_dict'][var] = np.ma.masked_values(new, FILLVALUE_F)
+                out_dicts['veg_dict'][var] \
+                    = np.ma.masked_values(new, FILLVALUE_F)
 
         # Distribute the veglib variables
         # 1st - the 1d vars
@@ -1532,7 +1598,7 @@ def write_netcdf(myfile, target_attrs, target_grid,
                 print('writing var: {0} {1}'.format(var, data.shape))
 
                 if veg_grid[var].ndim == 2:
-                    if var  == 'Nveg':
+                    if var == 'Nveg':
                         v = f.createVariable(var, NC_INT, dims2,
                                              fill_value=FILLVALUE_I)
                     else:
@@ -1813,7 +1879,10 @@ def write_nc_state(myfile, target_attrs, target_grid,
             elif var in ['Lake_layer_surf_area', 'Lake_layer_temp']:
                 mycoords = ('lake_node', ) + dims2
             else:
-                raise ValueError('only Lake_soil_moisture, lake_soil_node_temp, and Lake_layer_surf_area are allowed to have 3 dimensions')
+                raise ValueError('only Lake_soil_moisture, '
+                                 'lake_soil_node_temp, and '
+                                 'Lake_layer_surf_area are allowed to have '
+                                 '3 dimensions')
             v = f.createVariable(var, NC_DOUBLE, mycoords,
                                  fill_value=FILLVALUE_F)
             v[:] = data
@@ -1837,7 +1906,8 @@ def write_nc_state(myfile, target_attrs, target_grid,
             elif var == 'Soil_node_temp':
                 mycoords = ('veg_class', 'snow_band', 'soil_node', ) + dims2
             else:
-                raise ValueError('only Soil_moisture and Soil_node_temp are allowed to have 5 dimensions')
+                raise ValueError('only Soil_moisture and Soil_node_temp '
+                                 'are allowed to have 5 dimensions')
             v = f.createVariable(var, NC_DOUBLE, mycoords,
                                  fill_value=FILLVALUE_F)
             v[:] = data
@@ -1848,8 +1918,9 @@ def write_nc_state(myfile, target_attrs, target_grid,
             v = f.createVariable(var, NC_DOUBLE, mycoords,
                                  fill_value=FILLVALUE_F)
             v[:] = data
-        elif var in ['dz_node','node_depth']:
-            # dz_node and node_depth already created earlier as dimension variables
+        elif var in ['dz_node', 'node_depth']:
+            # dz_node and node_depth already created earlier
+            # as dimension variables
             continue
         else:
             raise ValueError('only able to handle dimensions <= 6')
@@ -1885,7 +1956,8 @@ def soil(in_file, c=Cols(nlayers=3, organic_fract=False,
         else:
             soil_dict[var] = np.squeeze(data[:, columns])
 
-    unique_grid_cells, inds = np.unique(soil_dict['gridcell'], return_index=True)
+    unique_grid_cells, inds = np.unique(soil_dict['gridcell'],
+                                        return_index=True)
     if len(unique_grid_cells) != len(soil_dict['gridcell']):
         warn('found duplicate grid cells in soil file')
         for key, val in soil_dict.items():
@@ -2179,9 +2251,9 @@ def lake(lake_file, soil_dict, max_numnod=10,
 
 
 # -------------------------------------------------------------------- #
-def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
-          nlayers=3, snow_bands=5, veg_classes=11, soil_nodes=3, nfrost=1,
-          max_numnod=10, cells=None, carbon=False):
+def state(state_file, soil_dict, veg_dict, snow_dict, lake_dict,
+          version_in='4.2', nlayers=3, snow_bands=5, veg_classes=11,
+          soil_nodes=3, nfrost=1, max_numnod=10, cells=None, carbon=False):
     """
     Read the model state variables from state_file.  Also reorders data to
     match gridcell order of soil file.
@@ -2210,9 +2282,11 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
         elif var in ['dz_node', 'node_depth']:
             state_dict[var] = np.zeros((soil_nodes))
         elif var == 'Soil_moisture':
-            state_dict[var] = np.zeros((cells, veg_classes_state, snow_bands, nlayers))
+            state_dict[var] = np.zeros((cells, veg_classes_state,
+                                        snow_bands, nlayers))
         elif var == 'Soil_ice':
-            state_dict[var] = np.zeros((cells, veg_classes_state, snow_bands, nlayers, nfrost))
+            state_dict[var] = np.zeros((cells, veg_classes_state,
+                                        snow_bands, nlayers, nfrost))
         elif var in ['Canopy_water', 'AnnualNPP', 'AnnualNPPPrev',
                      'CLitter', 'CInter', 'CSlow', 'Snow_coverage',
                      'Snow_water_equivalent', 'Snow_surf_temp',
@@ -2220,9 +2294,11 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
                      'Snow_density', 'Snow_cold_content', 'Snow_canopy']:
             state_dict[var] = np.zeros((cells, veg_classes_state, snow_bands))
         elif var in ['Snow_age', 'Snow_melt_state']:
-            state_dict[var] = np.zeros((cells, veg_classes_state, snow_bands), dtype='int')
+            state_dict[var] = np.zeros((cells, veg_classes_state,
+                                        snow_bands), dtype='int')
         elif var == 'Soil_node_temp':
-            state_dict[var] = np.zeros((cells, veg_classes_state, snow_bands, soil_nodes))
+            state_dict[var] = np.zeros((cells, veg_classes_state,
+                                        snow_bands, soil_nodes))
         elif var == 'Lake_soil_moisture':
             state_dict[var] = np.zeros((cells, nlayers))
         elif var == 'Lake_soil_ice':
@@ -2244,7 +2320,8 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
     if nlayers_state != nlayers:
         raise ValueError('nlayers in state file != user-specified nlayers')
     if nnodes_state != soil_nodes:
-        raise ValueError('soil_nodes in state file != user-specified soil_nodes')
+        raise ValueError('soil_nodes in state file != user-specified '
+                         'soil_nodes')
 
     # Compute bare soil fraction from vegparam
     bare = 1 - veg_dict['Cv'].sum(axis=0)
@@ -2273,19 +2350,23 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
 
         # Make sure state file has correct number of veg tiles
         if nveg_state[cell] != nveg_expected:
-            raise ValueError('nveg in state file != nveg expeected from veg_param file (including bare tile if appropriate)')
+            raise ValueError('nveg in state file != nveg expeected from '
+                             'veg_param file (including bare tile if '
+                             'appropriate)')
 
         # Compute expected number of snow bands from snowband file
         nbands_state[cell] = int(temp[2])
         bands_present = []
         for iband in range(snow_bands):
-            if version_in not in ['4.0.6', '4.0.7', '4.1.0'] or snow_dict['area'][cell][iband] > 0:
+            if version_in not in ['4.0.6', '4.0.7', '4.1.0'] \
+                   or snow_dict['area'][cell][iband] > 0:
                 bands_present.append(iband)
         nbands_expected = len(bands_present)
 
         # Make sure state file has correct number of snow bands
         if nbands_state[cell] != nbands_expected:
-            raise ValueError('nbands in state file != nbands expected based on snow bands file')
+            raise ValueError('nbands in state file != nbands expected '
+                             'based on snow bands file')
 
         # Continue parsing state file
         if cell == 0:
@@ -2306,10 +2387,12 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
             band = bands_present[iband]
 
             tmp = 2
-            state_dict['Soil_moisture'][cell, veg_class, band, :] = temp[tmp:tmp + nlayers]
+            state_dict['Soil_moisture'][cell, veg_class, band, :] \
+                = temp[tmp:tmp + nlayers]
             tmp += nlayers
             for lidx in range(nlayers):
-                state_dict['Soil_ice'][cell, veg_class, band, lidx, :] = temp[tmp:tmp + nfrost]
+                state_dict['Soil_ice'][cell, veg_class, band, lidx, :] \
+                    = temp[tmp:tmp + nfrost]
                 tmp += nfrost
             if iveg < nveg_state[cell]-1 or bare[cell] == 0:
                 state_dict['Canopy_water'][cell, veg_class, band] = temp[tmp]
@@ -2336,7 +2419,8 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
                 state_dict[var][cell, veg_class, band] = temp[tmp]
                 tmp += 1
 
-            state_dict['Soil_node_temp'][cell, veg_class, band, :] = temp[tmp:tmp + soil_nodes]
+            state_dict['Soil_node_temp'][cell, veg_class, band, :] \
+                = temp[tmp:tmp + soil_nodes]
 
             row += 1
 
@@ -2348,7 +2432,8 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
             state_dict['Lake_soil_moisture'][cell, :] = temp[tmp:tmp + nlayers]
             tmp += nlayers
             for lidx in range(nlayers):
-                state_dict['Lake_soil_ice'][cell, lidx, :] = temp[tmp:tmp + nfrost]
+                state_dict['Lake_soil_ice'][cell, lidx, :] \
+                    = temp[tmp:tmp + nfrost]
                 tmp += nfrost
 
             if carbon:
@@ -2367,20 +2452,24 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
                 state_dict[var][cell] = temp[tmp]
                 tmp += 1
 
-            state_dict['Lake_soil_node_temp'][cell, :] = temp[tmp:tmp + soil_nodes]
+            state_dict['Lake_soil_node_temp'][cell, :] \
+                = temp[tmp:tmp + soil_nodes]
             tmp += soil_nodes
 
             state_dict['Lake_active_layers'][cell] = int(temp[tmp])
+            Lake_active_layers = state_dict['Lake_active_layers'][cell]
             tmp += 1
             for var in ['Lake_layer_dz', 'Lake_surf_layer_dz', 'Lake_depth']:
                 state_dict[var][cell] = temp[tmp]
                 tmp += 1
-            state_dict['Lake_layer_surf_area'][cell, :Lake_active_layers[cell]] = temp[tmp:tmp + Lake_active_layers[cell]]
+            state_dict['Lake_layer_surf_area'][cell, :Lake_active_layers] \
+                = temp[tmp:tmp + Lake_active_layers]
             tmp += Lake_active_layers[cell] + 1
             for var in ['Lake_surf_area', 'Lake_volume']:
                 state_dict[var][cell] = temp[tmp]
                 tmp += 1
-            state_dict['Lake_layer_temp'][cell, :Lake_active_layers[cell]] = temp[tmp:tmp + Lake_active_layers[cell]]
+            state_dict['Lake_layer_temp'][cell, :Lake_active_layers] \
+                = temp[tmp:tmp + Lake_active_layers]
             tmp += Lake_active_layers[cell]
             for var in ['Lake_average_temp', 'Lake_ice_area_frac',
                         'Lake_ice_area_frac_new', 'Lake_ice_water_equivalent',
@@ -2407,7 +2496,8 @@ def state(state_file, soil_dict, veg_dict, lake_dict, version_in='4.2',
         if var in ['dz_node', 'node_depth']:
             new_state_dict[var] = state_dict[var]
         else:
-            #new_state_dict[var] = np.squeeze([state_dict[var][i] for i in inds], axis=(1,))
+            # new_state_dict[var] \
+            #     = np.squeeze([state_dict[var][i] for i in inds], axis=(1,))
             new_state_dict[var] = np.asarray(state_dict[var])
 
     return new_state_dict
