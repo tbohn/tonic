@@ -171,6 +171,13 @@ def main():
                                          "average temperature "
                                          "(default=False)",
                                     default=False)
+    grid_params_parser.add_argument("--new_snow_albedo_supplied",
+                                    type=str,
+                                    help="Flag indicating whether soil "
+                                         "parameter file contains albedo "
+                                         "of newly-fallen snow "
+                                         "(default=False)",
+                                    default=False)
     grid_params_parser.add_argument("--veglib_photo",
                                     type=str,
                                     help="Flag indicating whether veg "
