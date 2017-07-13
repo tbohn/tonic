@@ -197,7 +197,7 @@ class Format(object):
                  july_tavg_supplied=False, new_snow_albedo_supplied=False,
                  veglib_fcan=False, veglib_photo=False, blowing_snow=False,
                  vegparam_lai=False, vegparam_fcan=False,
-                 vegparam_albedo=False, lakes=False):
+                 vegparam_albedo=False, carbon=False, lakes=False):
 
         # Soil Params
         self.soil_param = {'run_cell': '%1i',
@@ -382,7 +382,7 @@ class Desc(object):
                  veglib_fcan=False, veglib_photo=False,
                  blowing_snow=False, vegparam_lai=False,
                  vegparam_fcan=False, vegparam_albedo=False,
-                 lakes=False):
+                 carbon=False, lakes=False):
 
         # Soil Params
         self.soil_param = {'run_cell': '1 = Run Grid Cell, 0 = Do Not Run',
@@ -698,7 +698,7 @@ class Units(object):
                  veglib_fcan=False, veglib_photo=False,
                  blowing_snow=False, vegparam_lai=False,
                  vegparam_fcan=False, vegparam_albedo=False,
-                 lakes=False):
+                 carbon=False, lakes=False):
 
         # Soil Params
         self.soil_param = {'run_cell': 'N/A',
