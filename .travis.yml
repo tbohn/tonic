@@ -6,15 +6,25 @@ python:
   - "2.7"
   - "3.4"
 
-# Setup anaconda
+# Set up anaconda
 before_install:
-  - wget http://repo.continuum.io/miniconda/Miniconda-2.2.2-Linux-x86_64.sh -O miniconda.sh
-  - chmod +x miniconda.sh
-  - ./miniconda.sh -b
-  - export PATH=/home/travis/anaconda/bin:$PATH
+  # Example yml file didn't set sudo to false above,
+  # and had the next line uncommented
+#  - sudo apt-get update
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+#  - chmod +x miniconda.sh
+#  - ./miniconda.sh -b -p $HOME/miniconda
+  - export PATH=$HOME/miniconda/bin:$PATH
+  - hash -r
   # Update conda itself
-  - conda update --yes conda
-
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
 install:
   - conda create --yes --name=tonic_test_env python=$TRAVIS_PYTHON_VERSION --file=ci/requirements-$TRAVIS_PYTHON_VERSION.txt
   - source activate tonic_test_env
