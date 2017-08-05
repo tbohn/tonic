@@ -85,65 +85,76 @@ class Cols(object):
                  veglib_photo=False):
 
         # Soil Parameters
-        self.soil_param = OrderedDict([('run_cell', np.array([0])),
-                                       ('gridcell', np.array([1])),
-                                       ('lats', np.array([2])),
-                                       ('lons', np.array([3])),
-                                       ('infilt', np.array([4])),
-                                       ('Ds', np.array([5])),
-                                       ('Dsmax', np.array([6])),
-                                       ('Ws', np.array([7])),
-                                       ('c', np.array([8]))])
-
-        i = 9
-        for var in ['expt', 'Ksat', 'phi_s', 'init_moist']:
-            self.soil_param[var] = np.arange(i, i + nlayers)
-            i += nlayers
-
-        self.soil_param['elev'] = np.array([i])
-        i += 1
-        self.soil_param['depth'] = np.arange(i, i + nlayers)
-        i += nlayers
-        self.soil_param['avg_T'] = np.array([i])
-        i += 1
-        self.soil_param['dp'] = np.array([i])
-        i += 1
-
-        varnames = ['bubble', 'quartz', 'bulk_density', 'soil_density']
+        # List the variable names
+        varnames = ['run_cell',
+                    'gridcell',
+                    'lats',
+                    'lons',
+                    'infilt',
+                    'Ds',
+                    'Dsmax',
+                    'Ws',
+                    'c',
+                    'expt',
+                    'Ksat',
+                    'phi_s',
+                    'init_moist',
+                    'elev',
+                    'depth',
+                    'avg_T',
+                    'dp',
+                    'bubble',
+                    'quartz',
+                    'bulk_density',
+                    'soil_density',
+                    'gridcell']
         if organic_fract:
-            varnames.append(['organic', 'bulk_dens_org', 'soil_dens_org'])
-        for var in varnames:
-            self.soil_param[var] = np.arange(i, i + nlayers)
-            i += nlayers
-
-        self.soil_param['off_gmt'] = np.array([i])
-        i += 1
-
-        for var in ['Wcr_FRACT', 'Wpwp_FRACT']:
-            self.soil_param[var] = np.arange(i, i + nlayers)
-            i += nlayers
-
-        for var in ['rough', 'snow_rough', 'annual_prec']:
-            self.soil_param[var] = np.array([i])
-            i += 1
-
-        self.soil_param['resid_moist'] = np.arange(i, i + nlayers)
-        i += nlayers
-
-        self.soil_param['fs_active'] = np.array([i])
-        i += 1
-
+            varnames.append(['organic',
+                             'bulk_dens_org',
+                             'soil_dens_org'])
+        varnames.append(['off_gmt',
+                         'Wcr_FRACT',
+                         'Wpwp_FRACT',
+                         'rough',
+                         'snow_rough',
+                         'annual_prec',
+                         'resid_moist',
+                         'fs_active'])
         if spatial_frost:
-            self.soil_param['frost_slope'] = np.array([i])
-            i += 1
-
+            varnames.append('frost_slope')
         if spatial_snow:
-            self.soil_param['max_snow_distrib_slope'] = np.array([i])
-            i += 1
-
+            varnames.append('max_snow_distrib_slope')
         if july_tavg_supplied:
-            self.soil_param['July_Tavg'] = np.array([i])
-            i += 1
+            varnames.append('July_Tavg')
+
+        # Define number of columns for each variable
+        varlens = {}
+        for var in varnames:
+            varlens[var] = 1
+        varnames_multi = ['expt',
+                          'Ksat',
+                          'phi_s',
+                          'init_moist',
+                          'bubble',
+                          'quartz',
+                          'bulk_density',
+                          'soil_density',
+                          'Wcr_FRACT',
+                          'Wpwp_FRACT',
+                          'resid_moist']
+        if organic_fract:
+            varnames_multi.append(['organic',
+                                   'bulk_dens_org',
+                                   'soil_dens_org'])
+        for var in varnames_multi:
+            varlens[var] = nlayers
+
+        # Compute column indices for each variable
+        self.soil_param = OrderedDict()
+        i = 0
+        for var in varnames:
+            self.soil_param[var] = np.arange(i, i + varlens[var])
+            i += varlens[var]
 
         # Snow Parameters
         self.snow_param = OrderedDict([('cellnum', np.array([0]))])
@@ -153,34 +164,51 @@ class Cols(object):
             i += snow_bands
 
         # Veg Library
-        self.veglib = OrderedDict([('Veg_class', np.array([0])),
-                                   ('lib_overstory', np.array([1])),
-                                   ('lib_rarc', np.array([2])),
-                                   ('lib_rmin', np.array([3])),
-                                   ('lib_LAI', np.arange(4, 16))])
-
-        varnames = ['lib_albedo', 'lib_veg_rough', 'lib_displacement']
+        # List the variable names
+        varnames = ['Veg_class',
+                    'lib_overstory',
+                    'lib_rarc',
+                    'lib_rmin',
+                    'lib_LAI']
         if veglib_fcan:
-            varnames = ['lib_fcanopy'] + varnames
-        i = 16
-        for var in varnames:
-            self.veglib[var] = np.arange(i, i + MONTHS_PER_YEAR)
-            i += MONTHS_PER_YEAR
-
-        for var in ['lib_wind_h', 'lib_RGL', 'lib_rad_atten',
-                    'lib_wind_atten', 'lib_trunk_ratio']:
-            self.veglib[var] = np.array([i])
-            i += 1
-
+            varnames = ['lib_fcanopy']
+        varnames.append(['lib_albedo',
+                         'lib_veg_rough',
+                         'lib_displacement',
+                         'lib_wind_h',
+                         'lib_RGL',
+                         'lib_rad_atten',
+                         'lib_wind_atten',
+                         'lib_trunk_ratio'])
         if veglib_photo:
-            varnames = ['lib_Ctype', 'lib_MaxCarboxRate',
-                        'lib_MaxE_or_CO2Spec', 'lib_LUE',
-                        'lib_Nscale', 'lib_Wnpp_inhib', 'lib_NPPfactor_sat']
-            for var in varnames:
-                self.veglib[var] = np.array([i])
-                i += 1
+            varnames.append(['lib_Ctype',
+                             'lib_MaxCarboxRate',
+                             'lib_MaxE_or_CO2Spec',
+                             'lib_LUE',
+                             'lib_Nscale',
+                             'lib_Wnpp_inhib',
+                             'lib_NPPfactor_sat'])
+        varnames.append(['lib_comment'])
 
-        self.veglib['lib_comment'] = np.array([i])
+        # Define number of columns for each variable
+        varlens = {}
+        for var in varnames:
+            varlens[var] = 1
+        varnames_multi = ['lib_LAI',
+                          'lib_albedo',
+                          'lib_veg_rough',
+                          'lib_displacement']
+        if veglib_fcan:
+            varnames_multi.append(['lib_fcanopy'])
+        for var in varnames_multi:
+            varlens[var] = MONTHS_PER_YEAR
+
+        # Compute column indices for each variable
+        self.veglib = OrderedDict()
+        i = 0
+        for var in varnames:
+            self.veglib[var] = np.arange(i, i + varlens[var])
+            i += varlens[var]
 
 
 # -------------------------------------------------------------------- #
@@ -1259,10 +1287,11 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
         var = 'Cv'
         bare = 1 - out_dicts['veg_dict'][var].sum(axis=0)
         bare[bare < 0.0] = 0.0
+        fill_val = FILLVALUE_F
+        dtype_str = 'np.float'
 
         # Determine the final number of veg classes, accounting for
         # potential new bare soil class, and determine that class's idx
-        var = 'Cv'
         if lib_bare_idx is not None:
             # Bare soil class already exists at lib_bare_idx
             extra_class = 0
@@ -1273,7 +1302,6 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
         nveg_classes = out_dicts['veg_dict'][var].shape[0] + extra_class
 
         # Transfer Cv info, accounting for additional bare soil areas
-        var = 'Cv'
         shape = (nveg_classes, ) + out_dicts['veg_dict'][var].shape[1:]
         new = np.zeros(shape)
         if extra_class:
@@ -1282,8 +1310,11 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             new[:, :, :] = out_dicts['veg_dict'][var]
         new[lib_bare_idx, :, :] += bare
         # Ensure that Cvs sum to 1.0
-        new /= new.sum(axis=0)
-        new[:, ymask, xmask] = FILLVALUE_F
+        try:
+            new /= new.sum(axis=0)
+            new[:, ymask, xmask] = fill_val
+        except ValueError:
+            new[:, :, :] = fill_val
         out_dicts['veg_dict'][var] = new
 
         # Distribute the vegparam variables (geographically-varying)
@@ -1292,6 +1323,7 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
         #   double LAI(veg_class, month, nj, ni) ;
         #   double fcan(veg_class, month, nj, ni) ;
         #   double albedo(veg_class, month, nj, ni) ;
+        fill_val = FILLVALUE_F
         varnames = ['root_depth', 'root_fract']
         if vegparam_lai and lai_src == 'FROM_VEGPARAM':
             varnames.append('LAI')
@@ -1301,25 +1333,25 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             varnames.append('albedo')
         for var in varnames:
             shape = (nveg_classes, ) + out_dicts['veg_dict'][var].shape[1:]
-            new = np.full(shape, FILLVALUE_F)
+            new = np.full(shape, fill_val)
             if extra_class:
                 new[:-1, :, :] = out_dicts['veg_dict'][var]
                 new[-1, :, :] = bare_vegparam[var]
             else:
                 new[:, :, :] = out_dicts['veg_dict'][var]
-            out_dicts['veg_dict'][var] = np.ma.masked_values(new, FILLVALUE_F)
+            out_dicts['veg_dict'][var] = np.ma.masked_values(new, fill_val)
 
         if blowing_snow:
             for var in ['sigma_slope', 'lag_one', 'fetch']:
                 shape = (nveg_classes, ) + out_dicts['veg_dict'][var].shape[1:]
-                new = np.full(shape, FILLVALUE_F)
+                new = np.full(shape, fill_val)
                 if extra_class:
                     new[:-1, :, :] = out_dicts['veg_dict'][var]
                     new[-1, :, :] = bare_vegparam[var]
                 else:
                     new[:, :, :] = out_dicts['veg_dict'][var]
                 out_dicts['veg_dict'][var] \
-                    = np.ma.masked_values(new, FILLVALUE_F)
+                    = np.ma.masked_values(new, fill_val)
 
         # Distribute the veglib variables
         # 1st - the 1d vars
@@ -1338,11 +1370,12 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             lib_var = 'lib_{0}'.format(var)
             if var in ['Ctype', 'Nscale']:
                 fill_val = FILLVALUE_I
-                new = np.full((nveg_classes, ysize, xsize), fill_val,
-                              dtype=np.int)
+                dtype_str = 'np.int'
             else:
                 fill_val = FILLVALUE_F
-                new = np.full((nveg_classes, ysize, xsize), fill_val)
+                dtype_str = 'np.float'
+            new = np.full((nveg_classes, ysize, xsize), fill_val,
+                          dtype=dtype_str)
             if extra_class:
                 new[:-1, yi, xi] = veglib_dict[lib_var][:, np.newaxis]
                 new[-1, yi, xi] = bare_vegparam[var]
@@ -1352,6 +1385,7 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             out_dicts['veg_dict'][var] = np.ma.masked_values(new, fill_val)
 
         # 2nd - the 2d vars
+        fill_val = FILLVALUE_F
         varnames = ['veg_rough', 'displacement']
         if alb_src == 'FROM_VEGLIB':
             varnames = ['albedo'] + varnames
@@ -1363,7 +1397,7 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             lib_var = 'lib_{0}'.format(var)
             shape = (nveg_classes, veglib_dict[lib_var].shape[1],
                      ysize, xsize)
-            new = np.full(shape, FILLVALUE_F)
+            new = np.full(shape, fill_val)
             if extra_class:
                 new[:-1, :, yi, xi] = veglib_dict[lib_var][:, :, np.newaxis]
                 new[-1, :, yi, xi] = bare_vegparam[var]
@@ -1371,7 +1405,7 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
                 new[:, :, yi, xi] = veglib_dict[lib_var][:, :, np.newaxis]
             for y, x in pyzip(ymask, xmask):
                 new[:, :, y, x] = fill_val
-            out_dicts['veg_dict'][var] = np.ma.masked_values(new, FILLVALUE_F)
+            out_dicts['veg_dict'][var] = np.ma.masked_values(new, fill_val)
 
         # Finally, transfer veglib class descriptions (don't distribute)
         # This deviates from dimensions of other grid vars
