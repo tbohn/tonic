@@ -171,7 +171,7 @@ class Cols(object):
                     'lib_rmin',
                     'lib_LAI']
         if veglib_fcan:
-            varnames = ['lib_fcanopy']
+            varnames.append('lib_fcanopy')
         varnames.append(['lib_albedo',
                          'lib_veg_rough',
                          'lib_displacement',
@@ -188,7 +188,7 @@ class Cols(object):
                              'lib_Nscale',
                              'lib_Wnpp_inhib',
                              'lib_NPPfactor_sat'])
-        varnames.append(['lib_comment'])
+        varnames.append('lib_comment')
 
         # Define number of columns for each variable
         varlens = {}
@@ -199,7 +199,7 @@ class Cols(object):
                           'lib_veg_rough',
                           'lib_displacement']
         if veglib_fcan:
-            varnames_multi.append(['lib_fcanopy'])
+            varnames_multi.append('lib_fcanopy')
         for var in varnames_multi:
             varlens[var] = MONTHS_PER_YEAR
 
