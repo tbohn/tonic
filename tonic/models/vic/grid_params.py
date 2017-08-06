@@ -194,21 +194,21 @@ class Cols(object):
         varlens = {}
         for var in varnames:
             varlens[var] = 1
-        varnames_multi = ['lib_LAI',
-                          'lib_albedo',
-                          'lib_veg_rough',
-                          'lib_displacement']
-        if veglib_fcan:
-            varnames_multi.append('lib_fcanopy')
-        for var in varnames_multi:
-            varlens[var] = MONTHS_PER_YEAR
+#        varnames_multi = ['lib_LAI',
+#                          'lib_albedo',
+#                          'lib_veg_rough',
+#                          'lib_displacement']
+#        if veglib_fcan:
+#            varnames_multi.append('lib_fcanopy')
+#        for var in varnames_multi:
+#            varlens[var] = MONTHS_PER_YEAR
 
-        # Compute column indices for each variable
-        self.veglib = OrderedDict()
-        i = 0
-        for var in varnames:
-            self.veglib[var] = np.arange(i, i + varlens[var])
-            i += varlens[var]
+#        # Compute column indices for each variable
+#        self.veglib = OrderedDict()
+#        i = 0
+#        for var in varnames:
+#            self.veglib[var] = np.arange(i, i + varlens[var])
+#            i += varlens[var]
 
 
 # -------------------------------------------------------------------- #
