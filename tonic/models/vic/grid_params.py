@@ -84,77 +84,77 @@ class Cols(object):
                  july_tavg_supplied=False, veglib_fcan=False,
                  veglib_photo=False):
 
-#        # Soil Parameters
-#        # List the variable names
-#        varnames = ['run_cell',
-#                    'gridcell',
-#                    'lats',
-#                    'lons',
-#                    'infilt',
-#                    'Ds',
-#                    'Dsmax',
-#                    'Ws',
-#                    'c',
-#                    'expt',
-#                    'Ksat',
-#                    'phi_s',
-#                    'init_moist',
-#                    'elev',
-#                    'depth',
-#                    'avg_T',
-#                    'dp',
-#                    'bubble',
-#                    'quartz',
-#                    'bulk_density',
-#                    'soil_density',
-#                    'gridcell']
-#        if organic_fract:
-#            varnames.append(['organic',
-#                             'bulk_dens_org',
-#                             'soil_dens_org'])
-#        varnames.append(['off_gmt',
-#                         'Wcr_FRACT',
-#                         'Wpwp_FRACT',
-#                         'rough',
-#                         'snow_rough',
-#                         'annual_prec',
-#                         'resid_moist',
-#                         'fs_active'])
-#        if spatial_frost:
-#            varnames.append('frost_slope')
-#        if spatial_snow:
-#            varnames.append('max_snow_distrib_slope')
-#        if july_tavg_supplied:
-#            varnames.append('July_Tavg')
-#
-#        # Define number of columns for each variable
-#        varlens = {}
-#        for var in varnames:
-#            varlens[var] = 1
-#        varnames_multi = ['expt',
-#                          'Ksat',
-#                          'phi_s',
-#                          'init_moist',
-#                          'bubble',
-#                          'quartz',
-#                          'bulk_density',
-#                          'soil_density',
-#                          'Wcr_FRACT',
-#                          'Wpwp_FRACT',
-#                          'resid_moist']
-#        if organic_fract:
-#            varnames_multi.append(['organic',
-#                                   'bulk_dens_org',
-#                                   'soil_dens_org'])
-#        for var in varnames_multi:
-#            varlens[var] = nlayers
-#
-#        # Compute column indices for each variable
-#        self.soil_param = OrderedDict()
-#        i = 0
-#        for var in varnames:
-#            self.soil_param[var] = np.arange(i, i + varlens[var])
-#            i += varlens[var]
+        # Soil Parameters
+        # List the variable names
+        varnames = ['run_cell',
+                    'gridcell',
+                    'lats',
+                    'lons',
+                    'infilt',
+                    'Ds',
+                    'Dsmax',
+                    'Ws',
+                    'c',
+                    'expt',
+                    'Ksat',
+                    'phi_s',
+                    'init_moist',
+                    'elev',
+                    'depth',
+                    'avg_T',
+                    'dp',
+                    'bubble',
+                    'quartz',
+                    'bulk_density',
+                    'soil_density',
+                    'gridcell']
+        if organic_fract:
+            varnames.append('organic')
+            varnames.append('bulk_dens_org')
+            varnames.append('soil_dens_org')
+        varnames.append('off_gmt')
+        varnames.append('Wcr_FRACT')
+        varnames.append('Wpwp_FRACT')
+        varnames.append('rough')
+        varnames.append('snow_rough')
+        varnames.append('annual_prec')
+        varnames.append('resid_moist')
+        varnames.append('fs_active')
+        if spatial_frost:
+            varnames.append('frost_slope')
+        if spatial_snow:
+            varnames.append('max_snow_distrib_slope')
+        if july_tavg_supplied:
+            varnames.append('July_Tavg')
+
+        # Define number of columns for each variable
+        varlens = {}
+        for var in varnames:
+            varlens[var] = 1
+        varnames_multi = ['expt',
+                          'Ksat',
+                          'phi_s',
+                          'init_moist',
+                          'bubble',
+                          'quartz',
+                          'bulk_density',
+                          'soil_density',
+                          'Wcr_FRACT',
+                          'Wpwp_FRACT',
+                          'resid_moist']
+        if organic_fract:
+            varnames_multi.append(['organic',
+                                   'bulk_dens_org',
+                                   'soil_dens_org'])
+        for var in varnames_multi:
+            varlens[var] = nlayers
+
+        # Compute column indices for each variable
+        self.soil_param = OrderedDict()
+        i = 0
+        for var in varnames:
+            self.soil_param[var] = np.arange(i, i + varlens[var])
+            i += varlens[var]
 
         # Snow Band Parameters
         self.snow_param = OrderedDict([('cellnum', np.array([0]))])
