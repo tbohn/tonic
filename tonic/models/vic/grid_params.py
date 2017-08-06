@@ -163,52 +163,52 @@ class Cols(object):
             self.snow_param[var] = np.arange(i, i + snow_bands)
             i += snow_bands
 
-#        # Veg Library
-#        # List the variable names
-#        varnames = ['Veg_class',
-#                    'lib_overstory',
-#                    'lib_rarc',
-#                    'lib_rmin',
-#                    'lib_LAI']
-#        if veglib_fcan:
-#            varnames.append('lib_fcanopy')
-#        varnames.append(['lib_albedo',
-#                         'lib_veg_rough',
-#                         'lib_displacement',
-#                         'lib_wind_h',
-#                         'lib_RGL',
-#                         'lib_rad_atten',
-#                         'lib_wind_atten',
-#                         'lib_trunk_ratio'])
-#        if veglib_photo:
-#            varnames.append(['lib_Ctype',
-#                             'lib_MaxCarboxRate',
-#                             'lib_MaxE_or_CO2Spec',
-#                             'lib_LUE',
-#                             'lib_Nscale',
-#                             'lib_Wnpp_inhib',
-#                             'lib_NPPfactor_sat'])
-#        varnames.append('lib_comment')
-#
-#        # Define number of columns for each variable
-#        varlens = {}
-#        for var in varnames:
-#            varlens[var] = 1
-#        varnames_multi = ['lib_LAI',
-#                          'lib_albedo',
-#                          'lib_veg_rough',
-#                          'lib_displacement']
-#        if veglib_fcan:
-#            varnames_multi.append('lib_fcanopy')
-#        for var in varnames_multi:
-#            varlens[var] = MONTHS_PER_YEAR
-#
-#        # Compute column indices for each variable
-#        self.veglib = OrderedDict()
-#        i = 0
-#        for var in varnames:
-#            self.veglib[var] = np.arange(i, i + varlens[var])
-#            i += varlens[var]
+        # Veg Library
+        # List the variable names
+        varnames = ['Veg_class',
+                    'lib_overstory',
+                    'lib_rarc',
+                    'lib_rmin',
+                    'lib_LAI']
+        if veglib_fcan:
+            varnames.append('lib_fcanopy')
+        varnames.append(['lib_albedo',
+                         'lib_veg_rough',
+                         'lib_displacement',
+                         'lib_wind_h',
+                         'lib_RGL',
+                         'lib_rad_atten',
+                         'lib_wind_atten',
+                         'lib_trunk_ratio'])
+        if veglib_photo:
+            varnames.append(['lib_Ctype',
+                             'lib_MaxCarboxRate',
+                             'lib_MaxE_or_CO2Spec',
+                             'lib_LUE',
+                             'lib_Nscale',
+                             'lib_Wnpp_inhib',
+                             'lib_NPPfactor_sat'])
+        varnames.append('lib_comment')
+
+        # Define number of columns for each variable
+        varlens = {}
+        for var in varnames:
+            varlens[var] = 1
+        varnames_multi = ['lib_LAI',
+                          'lib_albedo',
+                          'lib_veg_rough',
+                          'lib_displacement']
+        if veglib_fcan:
+            varnames_multi.append('lib_fcanopy')
+        for var in varnames_multi:
+            varlens[var] = MONTHS_PER_YEAR
+
+        # Compute column indices for each variable
+        self.veglib = OrderedDict()
+        i = 0
+        for var in varnames:
+            self.veglib[var] = np.arange(i, i + varlens[var])
+            i += varlens[var]
 
 
 # -------------------------------------------------------------------- #
