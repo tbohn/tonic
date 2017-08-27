@@ -149,67 +149,77 @@ def main():
                                          "input files)",
                                     default=None)
     grid_params_parser.add_argument("--organic_fract",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether soil "
                                          "parameter file contains organic "
-                                         "fractions (default=False)",
-                                    default=False)
+                                         "fractions (default=False)")
     grid_params_parser.add_argument("--spatial_frost",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether soil "
                                          "parameter file contains spatial "
-                                         "frost parameters (default=False)",
-                                    default=False)
+                                         "frost parameters (default=False)")
     grid_params_parser.add_argument("--spatial_snow",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether soil "
                                          "parameter file contains spatial "
-                                         "snow parameters (default=False)",
-                                    default=False)
+                                         "snow parameters (default=False)")
     grid_params_parser.add_argument("--july_tavg_supplied",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether soil "
                                          "parameter file contains July "
                                          "average temperature "
-                                         "(default=False)",
-                                    default=False)
+                                         "(default=False)")
     grid_params_parser.add_argument("--veglib_photo",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether veg "
                                          "library file contains photo-"
                                          "synthesis parameters "
-                                         "(default=False)",
-                                    default=False)
+                                         "(default=False)")
     grid_params_parser.add_argument("--veglib_fcan",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether veg "
                                          "library file contains fcanopy "
-                                         "values (default=False)",
-                                    default=False)
+                                         "values (default=False)")
     grid_params_parser.add_argument("--blowing_snow",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether veg "
                                          "parameter file contains blowing "
-                                         "snow parameters (default=False)",
-                                    default=False)
+                                         "snow parameters (default=False)")
     grid_params_parser.add_argument("--vegparam_lai",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether veg "
                                          "parameter file contains lai "
-                                         "values (default=False)",
-                                    default=False)
+                                         "values (default=False)")
     grid_params_parser.add_argument("--vegparam_fcan",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether veg "
                                          "parameter file contains fcanopy "
-                                         "values (default=False)",
-                                    default=False)
+                                         "values (default=False)")
     grid_params_parser.add_argument("--vegparam_albedo",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether veg "
                                          "parameter file contains albedo "
-                                         "values (default=False)",
-                                    default=False)
+                                         "values (default=False)")
     grid_params_parser.add_argument("--lai_src",
                                     type=str,
                                     help="Where to take lai values from; "
@@ -237,18 +247,20 @@ def main():
                                     choices=['FROM_VEGLIB', 'FROM_VEGPARAM'],
                                     default="FROM_VEGLIB")
     grid_params_parser.add_argument("--lake_profile",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether lake "
                                          "parameter file contains lake "
                                          "depth-area relationship "
-                                         "(default=False)",
-                                    default=False)
+                                         "(default=False)")
     grid_params_parser.add_argument("--carbon",
-                                    type=str,
+                                    type=bool,
+                                    default=False,
+                                    action='store_true',
                                     help="Flag indicating whether state "
                                          "file contains carbon-cycle "
-                                         "variables (default=False)",
-                                    default=False)
+                                         "variables (default=False)")
     # ---------------------------------------------------------------- #
 
     # ---------------------------------------------------------------- #
