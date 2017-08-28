@@ -466,17 +466,17 @@ class Desc(object):
         if organic_fract:
             self.soil_param['organic'] = 'Organic content of soil'
             self.soil_param['bulk_dens_org'] = 'Bulk density of organic ' \
-                                               + 'portion of soil'
+                                               'portion of soil'
             self.soil_param['soil_dens_org'] = 'Soil density of organic ' \
-                                               + 'portion of soil'
+                                               'portion of soil'
         if spatial_frost:
             self.soil_param['frost_slope'] = 'Slope of uniform ' \
-                                             + 'distribution of soil ' \
-                                             + 'temperature'
+                                             'distribution of soil ' \
+                                             'temperature'
         if spatial_snow:
             self.soil_param['max_snow_distrib_slope'] = 'Maximum slope of ' \
-                                                        + 'the snow depth ' \
-                                                        + 'distribution'
+                                                        'the snow depth ' \
+                                                        'distribution'
         if july_tavg_supplied:
             self.soil_param['July_Tavg'] = 'Average July air temperature'
 
@@ -536,7 +536,7 @@ class Desc(object):
             self.veglib['lib_fcanopy'] = 'Canopy cover fraction, one per month'
         if veglib_photo:
             self.veglib['lib_Ctype'] = 'Photosynthetic pathway (0 = C3; ' \
-                                       + '1 = C4)'
+                                       '1 = C4)'
             self.veglib['lib_MaxCarboxRate'] = 'Maximum carboxylation rate ' \
                                                'at 25 C'
             self.veglib['lib_MaxE_or_CO2Spec'] = 'Maximum electron ' \
@@ -631,9 +631,9 @@ class Desc(object):
                                         'soil temperature profile'}
         if carbon:
             self.state['AnnualNPP'] = 'Year-to-date total net primary ' \
-                                      + 'productivity'
+                                      'productivity'
             self.state['AnnualNPPPrev'] = 'Previous annual total net ' \
-                                          + 'primary prouctivity'
+                                          'primary prouctivity'
             self.state['CLitter'] = 'Carbon storage in litter pool'
             self.state['CInter'] = 'Carbon storage in intermediate soil pool'
             self.state['CSlow'] = 'Carbon storage in slow soil pool'
