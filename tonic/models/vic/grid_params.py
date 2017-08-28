@@ -594,7 +594,7 @@ class Desc(object):
         if lakes:
             self.lake_param = {'gridcell': 'Grid cell number',
                                'lake_idx': 'index of veg tile that contains '
-                               'the lake/wetland',
+                                           'the lake/wetland',
                                'numnod': 'Maxium number of lake layers in the '
                                          'grid cell',
                                'mindepth': 'Minimum lake water depth for '
@@ -905,9 +905,9 @@ def _run(args):
     """
     nc_file = make_grid(grid_file=args.grid_file,
                         soil_file=args.soil_file,
-                        snow_file=args.snow_file,
                         vegl_file=args.vegl_file,
                         veg_file=args.veg_file,
+                        snow_file=args.snow_file,
                         lake_file=args.lake_file,
                         state_file=args.state_file,
                         nc_file=args.out_file,
@@ -943,9 +943,9 @@ def _run(args):
 
 
 # -------------------------------------------------------------------- #
-def make_grid(grid_file, soil_file, snow_file, vegl_file, veg_file,
-              lake_file, state_file, nc_file='params.nc',
-              nc_state_file='state.nc', version_in='4.2',
+def make_grid(grid_file, soil_file, vegl_file, veg_file, snow_file=None,
+              lake_file=None, state_file=None, nc_file='params.nc',
+              nc_state_file=None, version_in='4.2',
               grid_decimal=4, nlayers=3, snow_bands=5, veg_classes=11,
               max_roots=3, max_numnod=10, soil_nodes=3, nfrost=1,
               cells=None, organic_fract=False, spatial_frost=False,
@@ -1302,7 +1302,6 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
         bare = 1 - out_dicts['veg_dict'][var].sum(axis=0)
         bare[bare < 0.0] = 0.0
         fill_val = FILLVALUE_F
-        dtype_str = 'np.float'
 
         # Determine the final number of veg classes, accounting for
         # potential new bare soil class, and determine that class's idx
@@ -1349,10 +1348,10 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             shape = (nveg_classes, ) + out_dicts['veg_dict'][var].shape[1:]
             new = np.full(shape, fill_val)
             if extra_class:
-                new[:-1, :, :] = out_dicts['veg_dict'][var]
-                new[-1, :, :] = bare_vegparam[var]
+                new[:-1] = out_dicts['veg_dict'][var]
+                new[-1] = bare_vegparam[var]
             else:
-                new[:, :, :] = out_dicts['veg_dict'][var]
+                new = out_dicts['veg_dict'][var]
             out_dicts['veg_dict'][var] = np.ma.masked_values(new, fill_val)
 
         if blowing_snow:
@@ -1360,10 +1359,10 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
                 shape = (nveg_classes, ) + out_dicts['veg_dict'][var].shape[1:]
                 new = np.full(shape, fill_val)
                 if extra_class:
-                    new[:-1, :, :] = out_dicts['veg_dict'][var]
-                    new[-1, :, :] = bare_vegparam[var]
+                    new[:-1] = out_dicts['veg_dict'][var]
+                    new[-1] = bare_vegparam[var]
                 else:
-                    new[:, :, :] = out_dicts['veg_dict'][var]
+                    new = out_dicts['veg_dict'][var]
                 out_dicts['veg_dict'][var] \
                     = np.ma.masked_values(new, fill_val)
 
@@ -1384,12 +1383,12 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             lib_var = 'lib_{0}'.format(var)
             if var in ['Ctype', 'Nscale']:
                 fill_val = FILLVALUE_I
-                dtype_str = 'np.int'
+                dtype_tmp = np.int
             else:
                 fill_val = FILLVALUE_F
-                dtype_str = 'np.float'
+                dtype_tmp = np.float
             new = np.full((nveg_classes, ysize, xsize), fill_val,
-                          dtype=dtype_str)
+                          dtype=dtype_tmp)
             if extra_class:
                 new[:-1, yi, xi] = veglib_dict[lib_var][:, np.newaxis]
                 new[-1, yi, xi] = bare_vegparam[var]
@@ -1430,7 +1429,7 @@ def grid_params(soil_dict, target_grid, snow_dict, veglib_dict, veg_dict,
             new[:-1] = veglib_dict['lib_comment']
             new[-1] = 'Bare Soil'
         else:
-            new[:] = veglib_dict['lib_comment']
+            new = veglib_dict['lib_comment']
         out_dicts['veg_dict']['comment'] = new
 
     return out_dicts
