@@ -169,6 +169,12 @@ def main():
                                          "parameter file contains July "
                                          "average temperature "
                                          "(default=False)")
+    grid_params_parser.add_argument("--new_snow_albedo_supplied",
+                                    action='store_true',
+                                    help="Flag indicating whether soil "
+                                         "parameter file contains albedo "
+                                         "of newly-fallen snow "
+                                         "(default=False)")
     grid_params_parser.add_argument("--veglib_photo",
                                     action='store_true',
                                     help="Flag indicating whether veg "

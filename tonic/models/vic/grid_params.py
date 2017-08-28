@@ -88,8 +88,8 @@ YVAR = 'yc'
 class Cols(object):
     def __init__(self, nlayers=3, snow_bands=5, organic_fract=False,
                  spatial_frost=False, spatial_snow=False,
-                 july_tavg_supplied=False, veglib_fcan=False,
-                 veglib_photo=False, veglib_irr=False):
+                 july_tavg_supplied=False, new_snow_albedo_supplied=False,
+                 veglib_fcan=False, veglib_photo=False, veglib_irr=False):
 
         # Soil Parameters
         # List the variable names
@@ -132,6 +132,8 @@ class Cols(object):
             varnames.append('max_snow_distrib_slope')
         if july_tavg_supplied:
             varnames.append('July_Tavg')
+        if new_snow_albedo_supplied:
+            varnames.append('new_snow_albedo')
 
         # Define number of columns for each variable
         varlens = {}
@@ -230,8 +232,8 @@ class Cols(object):
 class Format(object):
     def __init__(self, nlayers=3, snow_bands=5, organic_fract=False,
                  spatial_frost=False, spatial_snow=False,
-                 july_tavg_supplied=False, veglib_fcan=False,
-                 veglib_photo=False, veglib_irr=False,
+                 july_tavg_supplied=False, new_snow_albedo_supplied=False,
+                 veglib_fcan=False, veglib_photo=False, veglib_irr=False,
                  blowing_snow=False, vegparam_lai=False,
                  vegparam_fcan=False, vegparam_albedo=False,
                  vegparam_irr=False, carbon=False, lakes=False):
@@ -276,6 +278,8 @@ class Format(object):
             self.soil_param['max_snow_distrib_slope'] = '%12.7g'
         if july_tavg_supplied:
             self.soil_param['July_Tavg'] = '%12.7g'
+        if new_snow_albedo_supplied:
+            self.soil_param['new_snow_albedo'] = '%12.7g'
 
         # Snow Band Params
         self.snow_param = {'cellnum': '%1i',
@@ -421,6 +425,7 @@ class Format(object):
 class Desc(object):
     def __init__(self, organic_fract=False, spatial_frost=False,
                  spatial_snow=False, july_tavg_supplied=False,
+                 new_snow_albedo_supplied=False,
                  veglib_fcan=False, veglib_photo=False,
                  veglib_irr=False, blowing_snow=False,
                  vegparam_lai=False, vegparam_fcan=False,
@@ -500,6 +505,8 @@ class Desc(object):
                                                         + 'distribution'
         if july_tavg_supplied:
             self.soil_param['July_Tavg'] = 'Average July air temperature'
+        if new_snow_albedo_supplied:
+            self.soil_param['new_snow_albedo'] = 'Albedo of new-fallen snow'
 
         # Snow Band Params
         self.snow_param = {'cellnum': 'Grid cell number (should match numbers '
@@ -745,6 +752,7 @@ class Desc(object):
 class Units(object):
     def __init__(self, organic_fract=False, spatial_frost=False,
                  spatial_snow=False, july_tavg_supplied=False,
+                 new_snow_albedo_supplied=False,
                  veglib_fcan=False, veglib_photo=False,
                  veglib_irr=False, blowing_snow=False,
                  vegparam_lai=False, vegparam_fcan=False,
@@ -791,6 +799,8 @@ class Units(object):
             self.soil_param['max_snow_distrib_slope'] = 'm'
         if july_tavg_supplied:
             self.soil_param['July_Tavg'] = 'C'
+        if new_snow_albedo_supplied:
+            self.soil_param['new_snow_albedo'] = 'fraction'
 
         # Snow Band Params
         self.snow_param = {'cellnum': 'N/A',
@@ -957,6 +967,7 @@ def _run(args):
                         spatial_frost=args.spatial_frost,
                         spatial_snow=args.spatial_snow,
                         july_tavg_supplied=args.july_tavg_supplied,
+                        new_snow_albedo_supplied=args.new_snow_albedo_supplied,
                         veglib_fcan=args.veglib_fcan,
                         veglib_photo=args.veglib_photo,
                         veglib_irr=args.veglib_irr,
@@ -968,8 +979,7 @@ def _run(args):
                         lai_src=args.lai_src,
                         fcan_src=args.fcan_src,
                         alb_src=args.alb_src,
-                        lake_profile=args.lake_profile,
-                        carbon=args.carbon)
+                        lake_profile=args.lake_profile)
 
     print('completed grid_params.main(), output file was: {0}'.format(nc_file))
 # -------------------------------------------------------------------- #
@@ -983,6 +993,7 @@ def make_grid(grid_file, soil_file, vegl_file, veg_file, snow_file=None,
               max_roots=3, max_numnod=10, soil_nodes=3, nfrost=1,
               cells=None, organic_fract=False, spatial_frost=False,
               spatial_snow=False, july_tavg_supplied=False,
+              new_snow_albedo_supplied=False,
               veglib_fcan=False, veglib_photo=False,
               veglib_irr=False, blowing_snow=False,
               vegparam_lai=False, vegparam_fcan=False,
@@ -1012,7 +1023,8 @@ def make_grid(grid_file, soil_file, vegl_file, veg_file, snow_file=None,
                      organic_fract=organic_fract,
                      spatial_frost=spatial_frost,
                      spatial_snow=spatial_snow,
-                     july_tavg_supplied=july_tavg_supplied))
+                     july_tavg_supplied=july_tavg_supplied,
+                     new_snow_albedo_supplied=new_snow_albedo_supplied))
 
     if cells is None:
         cells = len(soil_dict['gridcell'])
@@ -1078,7 +1090,8 @@ def make_grid(grid_file, soil_file, vegl_file, veg_file, snow_file=None,
                      grid_dict['veg_dict'], grid_dict['lake_dict'],
                      version_in, organic_fract, spatial_frost,
                      spatial_snow, july_tavg_supplied,
-                     veglib_fcan, veglib_photo, veglib_irr, blowing_snow,
+                     new_snow_albedo_supplied, veglib_fcan,
+                     veglib_photo, veglib_irr, blowing_snow,
                      vegparam_lai, vegparam_fcan, vegparam_albedo,
                      vegparam_irr, lai_src, fcan_src, alb_src, carbon)
         if nc_state_file:
@@ -1088,6 +1101,7 @@ def make_grid(grid_file, soil_file, vegl_file, veg_file, snow_file=None,
                            grid_dict['state_dict'], version_in,
                            organic_fract, spatial_frost,
                            spatial_snow, july_tavg_supplied,
+                           new_snow_albedo_supplied,
                            veglib_fcan, veglib_photo, vegparam_irr,
                            blowing_snow, vegparam_lai, vegparam_fcan,
                            vegparam_albedo, vegparam_irr,
@@ -1493,12 +1507,12 @@ def write_netcdf(myfile, target_attrs, target_grid,
                  lake_grid=None, version_in='4.2',
                  organic_fract=False, spatial_frost=False,
                  spatial_snow=False, july_tavg_supplied=False,
+                 new_snow_albedo_supplied=False,
                  veglib_fcan=False, veglib_photo=False, veglib_irr=False,
                  blowing_snow=False, vegparam_lai=False, vegparam_fcan=False,
                  vegparam_albedo=False, vegparam_irr=False,
-                 lai_src='FROM_VEGLIB',
-                 fcan_src='FROM_DEFAULT', alb_src='FROM_VEGLIB',
-                 carbon=False):
+                 lai_src='FROM_VEGLIB', fcan_src='FROM_DEFAULT',
+                 alb_src='FROM_VEGLIB', carbon=False):
     """
     Write the gridded parameters to a netcdf4 file
     Will only write parameters that it is given
@@ -1523,6 +1537,7 @@ def write_netcdf(myfile, target_attrs, target_grid,
     unit = Units(organic_fract=organic_fract, spatial_frost=spatial_frost,
                  spatial_snow=spatial_snow,
                  july_tavg_supplied=july_tavg_supplied,
+                 new_snow_albedo_supplied=new_snow_albedo_supplied,
                  veglib_fcan=veglib_fcan, veglib_photo=veglib_photo,
                  veglib_irr=veglib_irr, blowing_snow=blowing_snow,
                  vegparam_lai=vegparam_lai, vegparam_fcan=vegparam_fcan,
@@ -1531,6 +1546,7 @@ def write_netcdf(myfile, target_attrs, target_grid,
     desc = Desc(organic_fract=organic_fract, spatial_frost=spatial_frost,
                 spatial_snow=spatial_snow,
                 july_tavg_supplied=july_tavg_supplied,
+                new_snow_albedo_supplied=new_snow_albedo_supplied,
                 veglib_fcan=veglib_fcan, veglib_photo=veglib_photo,
                 veglib_irr=veglib_irr, blowing_snow=blowing_snow,
                 vegparam_lai=vegparam_lai, vegparam_fcan=vegparam_fcan,
@@ -1802,6 +1818,7 @@ def write_nc_state(myfile, target_attrs, target_grid,
                    lake_grid=None, state_grid=None, version_in='4.2',
                    organic_fract=False, spatial_frost=False,
                    spatial_snow=False, july_tavg_supplied=False,
+                   new_snow_albedo_supplied=False,
                    veglib_fcan=False, veglib_photo=False, veglib_irr=False,
                    blowing_snow=False, vegparam_lai=False,
                    vegparam_fcan=False, vegparam_albedo=False,
@@ -1832,6 +1849,7 @@ def write_nc_state(myfile, target_attrs, target_grid,
     unit = Units(organic_fract=organic_fract, spatial_frost=spatial_frost,
                  spatial_snow=spatial_snow,
                  july_tavg_supplied=july_tavg_supplied,
+                 new_snow_albedo_supplied=new_snow_albedo_supplied,
                  veglib_fcan=veglib_fcan, veglib_photo=veglib_photo,
                  veglib_irr=veglib_irr, blowing_snow=blowing_snow,
                  vegparam_lai=vegparam_lai, vegparam_fcan=vegparam_fcan,
@@ -1840,6 +1858,7 @@ def write_nc_state(myfile, target_attrs, target_grid,
     desc = Desc(organic_fract=organic_fract, spatial_frost=spatial_frost,
                 spatial_snow=spatial_snow,
                 july_tavg_supplied=july_tavg_supplied,
+                new_snow_albedo_supplied=new_snow_albedo_supplied,
                 veglib_fcan=veglib_fcan, veglib_photo=veglib_photo,
                 veglib_irr=veglib_irr, blowing_snow=blowing_snow,
                 vegparam_lai=vegparam_lai, vegparam_fcan=vegparam_fcan,
@@ -2051,7 +2070,8 @@ def write_nc_state(myfile, target_attrs, target_grid,
 # -------------------------------------------------------------------- #
 def soil(in_file, c=Cols(nlayers=3, organic_fract=False,
                          spatial_frost=False, spatial_snow=False,
-                         july_tavg_supplied=False)):
+                         july_tavg_supplied=False,
+                         new_snow_albedo_supplied=False)):
     """
     Load the entire soil file into a dictionary of numpy arrays.
     Also reorders data to match gridcell order of soil file.
