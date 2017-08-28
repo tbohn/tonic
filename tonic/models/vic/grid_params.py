@@ -538,25 +538,25 @@ class Desc(object):
             self.veglib['lib_Ctype'] = 'Photosynthetic pathway (0 = C3; ' \
                                        + '1 = C4)'
             self.veglib['lib_MaxCarboxRate'] = 'Maximum carboxylation rate ' \
-                                               + 'at 25 C'
+                                               'at 25 C'
             self.veglib['lib_MaxE_or_CO2Spec'] = 'Maximum electron ' \
-                                                 + 'transport rate at ' \
-                                                 + '25 C (C3) or CO2 ' \
-                                                 + 'specificity (C4)'
+                                                 'transport rate at ' \
+                                                 '25 C (C3) or CO2 ' \
+                                                 'specificity (C4)'
             self.veglib['lib_LUE'] = 'Light use efficiency'
             self.veglib['lib_Nscale'] = '1 = this class employs nitrogen ' \
-                                        + 'scaling factors; 0 = no ' \
-                                        + 'nitrogen scaling factors'
+                                        'scaling factors; 0 = no ' \
+                                        'nitrogen scaling factors'
             self.veglib['lib_Wnpp_inhib'] = 'Fraction of maximum moisture ' \
-                                            + 'storage in top soil layer ' \
-                                            + 'above which photosynthesis ' \
-                                            + 'begins to be inhibited by ' \
-                                            + 'wet conditions'
+                                            'storage in top soil layer ' \
+                                            'above which photosynthesis ' \
+                                            'begins to be inhibited by ' \
+                                            'wet conditions'
             self.veglib['lib_NPPfactor_sat'] = 'NPP inhibition factor ' \
-                                               + 'under saturated ' \
-                                               + 'conditions (when ' \
-                                               + 'moisture = 100% of ' \
-                                               + 'maximum)'
+                                               'under saturated ' \
+                                               'conditions (when ' \
+                                               'moisture = 100% of ' \
+                                               'maximum)'
 
         # Veg Params
         self.veg_param = {'gridcell': 'Grid cell number',
@@ -573,9 +573,9 @@ class Desc(object):
                                         'zone'}
         if blowing_snow:
             self.veg_param['sigma_slope'] = 'Std. deviation of terrain ' \
-                                            + 'slope within veg tile'
+                                            'slope within veg tile'
             self.veg_param['lag_one'] = 'Lag one gradient autocorrelation ' \
-                                        + 'of terrain slope'
+                                        'of terrain slope'
             self.veg_param['fetch'] = 'Average fetch length within veg tile'
         if vegparam_lai:
             self.veg_param['LAI'] = 'Leaf Area Index, one per month'
@@ -639,71 +639,71 @@ class Desc(object):
             self.state['CSlow'] = 'Carbon storage in slow soil pool'
         if lakes:
             self.state['Lake_soil_moisture'] = 'lake soil layer moisture ' \
-                                               + 'content'
+                                               'content'
             self.state['Lake_soil_ice'] = 'lake soil layer ice content'
             if carbon:
                 self.state['Lake_CLitter'] = 'Carbon storage in lake ' \
-                                             + 'litter pool'
+                                             'litter pool'
                 self.state['Lake_CInter'] = 'Carbon storage in lake ' \
-                                            + 'intermediate soil pool'
+                                            'intermediate soil pool'
                 self.state['Lake_CSlow'] = 'Carbon storage in lake slow ' \
-                                           + 'soil pool'
+                                           'soil pool'
             self.state['Lake_snow_age'] = 'Number of time steps since ' \
-                                          + 'last snowfall on lake snowpack'
+                                          'last snowfall on lake snowpack'
             self.state['Lake_snow_melt_state'] = 'lake snow melting flag ' \
-                                                 + '(1=melting; 0=not)'
+                                                 '(1=melting; 0=not)'
             self.state['Lake_snow_coverage'] = 'lake snow area coverage ' \
-                                               + 'fraction'
+                                               'fraction'
             self.state['Lake_snow_water_equivalent'] = 'lake snow water ' \
-                                                       + 'equivalent'
+                                                       'equivalent'
             self.state['Lake_snow_surf_temp'] = 'temperature of lake ' \
-                                                + 'snowpack surface layer'
+                                                'snowpack surface layer'
             self.state['Lake_snow_surf_water'] = 'liquid water content of ' \
-                                                 + 'lake snowpack surface ' \
-                                                 + 'layer'
+                                                 'lake snowpack surface ' \
+                                                 'layer'
             self.state['Lake_snow_pack_temp'] = 'temperature of lake ' \
-                                                + 'snowpack pack layer'
+                                                'snowpack pack layer'
             self.state['Lake_snow_pack_water'] = 'liquid water content of ' \
-                                                 + 'lake snowpack pack layer'
+                                                 'lake snowpack pack layer'
             self.state['Lake_snow_density'] = 'lake snow density'
             self.state['Lake_snow_cold_content'] = 'lake snow cold content'
             self.state['Lake_snow_canopy'] = 'snow water equivalent of ' \
-                                             + 'canopy-intercepted lake snow'
+                                             'canopy-intercepted lake snow'
             self.state['Lake_soil_node_temp'] = 'temperatures of the ' \
-                                                + 'nodes in the lake soil ' \
-                                                + 'temperature profile'
+                                                'nodes in the lake soil ' \
+                                                'temperature profile'
             self.state['Lake_active_layers'] = 'number of active lake nodes'
             self.state['Lake_layer_dz'] = 'lake water layer thickness'
             self.state['Lake_surf_layer_dz'] = 'lake water surface layer ' \
-                                               + 'thickness'
+                                               'thickness'
             self.state['Lake_depth'] = 'lake depth (at deepest point)'
             self.state['Lake_layer_surf_area'] = 'surface areas of lake layers'
             self.state['Lake_surf_area'] = 'lake surface area as fraction ' \
-                                           + 'of grid cell area'
+                                           'of grid cell area'
             self.state['Lake_volume'] = 'lake volume'
             self.state['Lake_layer_temp'] = 'temperatures of lake water layers'
             self.state['Lake_average_temp'] = 'average lake water temperature'
             self.state['Lake_ice_area_frac'] = 'lake ice area (beginning ' \
-                                               + 'of time step'
+                                               'of time step'
             self.state['Lake_ice_area_frac_new'] = 'lake ice area (end of ' \
-                                                   + 'time step)'
+                                                   'time step)'
             self.state['Lake_ice_water_equivalent'] = 'lake ice water ' \
-                                                      + 'equivalent'
+                                                      'equivalent'
             self.state['Lake_ice_height'] = 'lake ice thickness'
             self.state['Lake_ice_temp'] = 'lake ice temperature'
             self.state['Lake_ice_snow_water_equivalent'] = 'snow water ' \
-                + 'equivalent of lake snowpack per unit lake ice area'
+                'equivalent of lake snowpack per unit lake ice area'
             self.state['Lake_ice_snow_surf_temp'] = 'temperature of lake ' \
-                                                    + 'snowpack surface layer'
+                                                    'snowpack surface layer'
             self.state['Lake_ice_snow_pack_temp'] = 'temperature of lake ' \
-                                                    + 'snowpack pack layer'
+                                                    'snowpack pack layer'
             self.state['Lake_ice_snow_cold_content'] = 'lake snow coldcontent'
             self.state['Lake_ice_snow_surf_water'] = 'liquid water content ' \
-                                                     + 'of lake snowpack ' \
-                                                     + 'surface layer'
+                                                     'of lake snowpack ' \
+                                                     'surface layer'
             self.state['Lake_ice_snow_pack_water'] = 'liquid water content ' \
-                                                     + 'of lake snowpack ' \
-                                                     + 'pack layer'
+                                                     'of lake snowpack ' \
+                                                     'pack layer'
             self.state['Lake_ice_snow_albedo'] = 'albedo of lake snowpack'
             self.state['Lake_ice_snow_depth'] = 'depth of lake snowpack'
 
