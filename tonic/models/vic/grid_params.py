@@ -135,6 +135,7 @@ class Cols(object):
                           'Ksat',
                           'phi_s',
                           'init_moist',
+                          'depth',
                           'bubble',
                           'quartz',
                           'bulk_density',
