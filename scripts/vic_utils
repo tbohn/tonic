@@ -180,6 +180,11 @@ def main():
                                     help="Flag indicating whether veg "
                                          "library file contains fcanopy "
                                          "values (default=False)")
+    grid_params_parser.add_argument("--veglib_irr",
+                                    action='store_true',
+                                    help="Flag indicating whether veg "
+                                         "library file contains irrigation "
+                                         "params (default=False)")
     grid_params_parser.add_argument("--blowing_snow",
                                     action='store_true',
                                     help="Flag indicating whether veg "
@@ -200,6 +205,11 @@ def main():
                                     help="Flag indicating whether veg "
                                          "parameter file contains albedo "
                                          "values (default=False)")
+    grid_params_parser.add_argument("--vegparam_irr",
+                                    action='store_true',
+                                    help="Flag indicating whether veg "
+                                         "parameter file contains irrigation "
+                                         "params (default=False)")
     grid_params_parser.add_argument("--lai_src",
                                     type=str,
                                     help="Where to take lai values from; "
